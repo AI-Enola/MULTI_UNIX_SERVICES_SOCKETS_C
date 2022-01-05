@@ -1,7 +1,7 @@
 /*
 Author : LA
 Description : Socket client TEST
-Version : Linux / V2 / Client
+Version : Linux & Mac OS / V2 / Client
 Public : YES
 */
 
@@ -25,14 +25,19 @@ Return : data as char*
 Error : Print Error in terminal
 */
 char* receive_from_server(int server_socket) {
+
     static char message[1024];
+
     memset(message, 0, sizeof(message));
+
     if (!read(server_socket, message, sizeof(message))) {
         fprintf(stderr, "Error : Receive from server\n");
         exit(EXIT_FAILURE);
+
     } else {
         printf("\nFrom server : %s\n",message);
     }
+
     return message;
 }
 
@@ -43,8 +48,11 @@ If packet then send it
 Error : NULL
 */
 void send_to_server(int server_socket, char packet[]) {
+
     if (packet != 0) {
+
         if (!send(server_socket, packet, strlen(packet), 0)) {
+
             fprintf(stderr, "Error : Sending to server\n");
             exit(EXIT_FAILURE);
         }
@@ -60,6 +68,7 @@ Return : Socket Server ID
 Error : Exit code
 */
 int connect_client(void) {
+    
     struct sockaddr_in serv_addr;
     static unsigned short server_socket = 0; // Init client ID
     
@@ -70,8 +79,8 @@ int connect_client(void) {
         exit(EXIT_FAILURE);
     }
    
-    serv_addr.sin_family = AF_INET; // IPV4 INTERNET PROTOCOL
-    serv_addr.sin_port = htons(SERVER_PORT); // Port
+    serv_addr.sin_family = AF_INET; // IP INTERNET PROTOCOL
+    serv_addr.sin_port = htons(SERVER_PORT); // Server Port to connect to
   
     if(!inet_pton(AF_INET, SERVER_IP, &serv_addr.sin_addr)) { // Get server IP and apply conversion on it in binary
         perror("Error : Server adress");
@@ -81,9 +90,9 @@ int connect_client(void) {
     if (connect(server_socket, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) { // Connect to server
         perror("Error : Connecting to server");
         exit(EXIT_FAILURE);
+    } else {
+        printf("Client connect to Server -> %s:%d:\n", inet_ntoa(serv_addr.sin_addr), ntohs(serv_addr.sin_port));
     }
-
-    printf("Client connect to Server -> %s:%d:\n", inet_ntoa(serv_addr.sin_addr), ntohs(serv_addr.sin_port));
 
     return server_socket;
 }

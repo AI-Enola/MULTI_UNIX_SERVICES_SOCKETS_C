@@ -1,9 +1,8 @@
 /*
 Author : LA
 Description : Socket server for services
-Version : Linux / V2.5 / Client
+Version : Linux / V2.5 / Client - Public
 
-TODO : Fix and optimization
 */
 
 #include "service_server.h" // His Header
@@ -61,6 +60,7 @@ Return : Socket Server ID
 Error : Exit code
 */
 int connect_client(void) {
+    
     struct sockaddr_un serv_addr;
     static unsigned short server_socket = 0;
     static unsigned short main_server = 0;

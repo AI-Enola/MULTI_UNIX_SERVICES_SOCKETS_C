@@ -1,9 +1,7 @@
 /*
 Author : LA
 Description : Socket server for services
-Version : Linux / V2.5 / Client
-
-TODO : Fix and optimization
+Version : Linux / V2.5 / Client - Public
 */
 
 #include "service_server.h" // His Header
@@ -17,6 +15,7 @@ TODO : Fix and optimization
 #include <sys/un.h>
 
 #define SOCKET_NAME "../server/server_vortex.socket" // Filepath
+
 /*
 Receive raw_data from socket server as char
 Read data
@@ -25,6 +24,7 @@ Error : Print Error in terminal
 */
 
 char* receive_from_server(int server_socket) {
+
     static char message[1024];
     memset(message, 0, sizeof(message));
 
@@ -32,6 +32,7 @@ char* receive_from_server(int server_socket) {
         fprintf(stderr, "Error : Receive from server\n");
         exit(EXIT_FAILURE);
     }
+
     printf("PYKE SERVICE 1Message received from main server : %s\n", message);
     return message;
 }
@@ -82,7 +83,7 @@ int connect_client(void) {
         exit(EXIT_FAILURE);
     }
 
-    send_to_server(server_socket, "0");
+    send_to_server(server_socket, "0"); // Send Service ID
 
     return server_socket;
 }

@@ -1,6 +1,8 @@
 #ifndef SERVER_SOCKET_H
 #define SERVER_SOCKET_H
 
+#define SERVICES_MAX 5 // SERVICE THREAD ID - CAN BE CHANGED
+
 #include <unistd.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
