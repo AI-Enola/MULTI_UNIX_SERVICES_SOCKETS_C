@@ -13,7 +13,6 @@ Tested :
  DEMO : 
  
  In server repository : gcc -pthread -o server private_socket.c public_socket.c
- And start with : ./server
  
  After that you need to compile the client using : gcc -o user test.c client.c
  
