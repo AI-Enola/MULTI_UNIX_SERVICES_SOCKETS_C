@@ -1,5 +1,11 @@
 # MULTI_UNIX_SERVICES_SOCKETS_C
 
+
+Description : Start server with multiple services, each services will be connected using socket UNIX communication. When a services is connected we will send his ID.
+ID's is using to route packet to corresponding services.
+Client is connected using AF_INET, each time client send data, ID need to be present in the data frame for the server redirect data to corresponding service.
+Service send back data to server and server send data back to client.
+
 Tested :
 
     - Linux OK
