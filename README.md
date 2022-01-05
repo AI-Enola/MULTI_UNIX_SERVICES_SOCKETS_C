@@ -33,6 +33,7 @@ Tested :
  
 
  1 - START SERVER -  You will need to open a terminal in server repository and to start server : ./server ../services/SERVICE_1/service_1 ../services/SERVICE_2/service_2 ../services/SERVICE_3/service_3
+
  Note : Server start services
  
 
